@@ -1,0 +1,11 @@
+sudo: required
+services:
+    - docker    #here we are telling as soon as travis pulls down the code for github we want the Docker to be running 
+
+
+
+before_install:
+    - docker build -t myimage -f Docker.dev .      #build our image using this file 
+
+script:
+    - docker run -e CI=true image npm run test              
